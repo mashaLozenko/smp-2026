@@ -9,3 +9,21 @@
 |`git commit` |`Створення комміту(конкретна одиниця змін -набір оновленних файлів + повідомлення стосовно змісту)` |`Коли захочу зберегти обрані зміни`|
 |`git push` |`Відправляє зміни на віддалений репозиторій` |`Коли потрібно загрузити зміни в відаленний репозиторій`|
 |`git log` |`Виводить історій дії, хто зробив та дату комміту` |`Коли потрібно подивитись історію`|
+
+## Передбачення
+У якому розділі — чи розділах — git status покаже eksperyment.txt?
+- Покаже зеленим(Staged files)
+- Я вгадала і Git показав : On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   praktyka/02-git/exsperyment.txt
+Який рядок покаже git diff, а який — git diff --staged?
+- git diff покаже другий та третій рядок, а git diff --staged покаже перший рядок
+- git diff показав другий і третій,а  git diff --staged показав перший та другий
+Що потрапить у коміт, якщо зараз зробити коміт без add? Що покаже git status після нього?
+- те що показав git diff --staged буде закоммічено. Що є недодані зміни у файлі ексрепименту
+- Я зробила правильне припущення
+
