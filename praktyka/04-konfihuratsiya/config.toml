@@ -1,0 +1,16 @@
+
+app_name = "Language Buddy"
+version = "1.10"
+language = "uk"
+user_name = "Masha"
+daily_goal = 20
+notifications = true
+dark_mode = false
+progress = 35.5
+
+languages = ["English", "Polish", "German", "Spanish"]
+
+[settings]
+sound = true
+difficulty = "easy"
+time_for_lesson = 15
