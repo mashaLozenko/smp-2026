@@ -16,6 +16,8 @@ propushcheno = 0
 ip_adresy = Counter()
 kody = Counter()
 pomylky_5xx = []
+shlyahy_404 = Counter()
+ip_404 = Counter()
 
 
 with open("data/access.log", encoding="utf-8") as f:
@@ -30,7 +32,9 @@ with open("data/access.log", encoding="utf-8") as f:
 
         ip_adresy[m["ip"]] += 1
         kody[m["kod"]] += 1
-
+        if m["kod"] == "404":
+            shlyahy_404[m["shlyah"]] += 1
+            ip_404[(m["shlyah"], m["ip"])] += 1
         
         if m["kod"].startswith("5"):
             pomylky_5xx.append((m["chas"], m["shlyah"]))
@@ -60,3 +64,13 @@ for chas, shlyah in pomylky_5xx:
 
 print("Усього помилок 5xx:", len(pomylky_5xx))
 # 2й, 3й та 4й пункт я робила за допомогою ші, тому що моїх знань не вистачало для того щоб зробити ці пункти,але регулярні вирази намагалась писати самостійно,тільки коли була помилка яку я не могла виправити - тоді зверталась до ші.
+# 5. Аналіз помилок 404
+print("\n5. Шляхи з помилками 404:")
+
+for shlyah, kilkist in shlyahy_404.most_common():
+    print(shlyah, "-", kilkist, "запитів")
+
+print("\n6. Хто звертався до цих шляхів:")
+
+for (shlyah, adresa), kilkist in ip_404.most_common():
+    print(shlyah, "-", adresa, "-", kilkist, "запитів")
