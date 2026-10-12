@@ -37,4 +37,5 @@ VYRAZY = {
 }
 
 # Посилання на один ваш збережений вираз на regex101 (кнопка Save):
-# regex101:
+# regex101: https://regex101.com/?regex=%5E%28%3F%3D.*%5BA-Z%5D%29%28%3F%3D.*%5Cd%29%5BA-Za-z0-9%5D%7B8%2C%7D%24&testString=Password123%0Ahello123%0AHELLOWORLD%0ATest2026%0Aabc123%0AMyPassword9&flags=gmu&flavor=python&delimiter=%22
+# регулярний вираз для перевірки надійності пароля
