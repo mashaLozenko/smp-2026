@@ -40,10 +40,23 @@ LEFT JOIN Album ON Artist.ArtistId = Album.ArtistId
 WHERE Album.AlbumId IS NULL;
 
 -- 6. Середня тривалість треку по жанрах, у хвилинах з одним знаком: жанр, хвилин; від найдовшої
-
+SELECT Genre.Name AS Genre,
+       ROUND(AVG(Track.Milliseconds) / 60000.0, 1) AS Minutes
+FROM Track
+JOIN Genre ON Track.GenreId = Genre.GenreId
+GROUP BY Genre.GenreId, Genre.Name
+ORDER BY Minutes DESC;
 
 -- 7. Виторг за країнами (за рахунками): країна, сума; від найбільшого
-
+SELECT BillingCountry AS Country, SUM(Total) AS Revenue
+FROM Invoice
+GROUP BY BillingCountry
+ORDER BY Revenue DESC;
 
 -- 8. Співробітники підтримки й скільки клієнтів у кожного: імʼя, прізвище, клієнтів; від найбільшого
-
+SELECT Employee.FirstName, Employee.LastName,
+       COUNT(Customer.CustomerId) AS CustomerCount
+FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+GROUP BY Employee.EmployeeId, Employee.FirstName, Employee.LastName
+ORDER BY CustomerCount DESC;
