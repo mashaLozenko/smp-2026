@@ -1,3 +1,4 @@
+
 """Робота 7, крок 4: той самий пункт 4 — циклом на Python.
 
     python praktyka/07-sql/tsykl.py
@@ -6,6 +7,7 @@
 який залишить лише клієнтів з Польщі або Чехії й відсортує їх за прізвищем.
 SQL тут лише «дай усе» — фільтр і сортування робите ви, як у роботі 6.
 """
+
 import sqlite3
 import sys
 from pathlib import Path
@@ -17,14 +19,25 @@ except (AttributeError, ValueError):
 
 BAZA = Path(__file__).resolve().parents[2] / "data" / "chinook.db"
 con = sqlite3.connect(BAZA)
-klienty = con.execute("SELECT FirstName, LastName, Country FROM Customer").fetchall()
+
+klienty = con.execute(
+    "SELECT FirstName, LastName, Country FROM Customer"
+).fetchall()
+
 print(f"Усього клієнтів: {len(klienty)}")
 
 vybrani = []
+
+# Вибираємо клієнтів із Польщі або Чехії
 for imia, prizvyshche, krayina in klienty:
-    ...  # ← ваш код: умова й append
+    if krayina in ("Poland", "Czech Republic"):
+        vybrani.append((imia, prizvyshche, krayina))
 
-# ← ваш код: сортування за прізвищем
+# Сортуємо вибраних клієнтів за прізвищем
+vybrani.sort(key=lambda k: k[1])
 
+# Виводимо результат
 for k in vybrani:
     print(*k)
+
+con.close()
